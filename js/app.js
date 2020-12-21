@@ -17,10 +17,18 @@ buttons.forEach((button) => {
     console.log(button);
     if (button.classList.contains("btn-right")) {
       active++;
-      imgContainer.style.backgroundImage = `url('./img/${pictures[active]}.jpeg')`;
-    } else if (button.classList.contains("btn-left")) {
-      active--;
-      imgContainer.style.backgroundImage = `url('./img/${pictures[active]}.jpeg')`;
     }
+    if (active === pictures.length) {
+      active = 0;
+    }
+    imgContainer.style.backgroundImage = `url('./img/${pictures[active]}.jpeg')`;
+    if (button.classList.contains("btn-left")) {
+      active--;
+    }
+    if (active < 0) {
+      active = pictures.length - 1;
+      console.log(pictures.length - 1);
+    }
+    imgContainer.style.backgroundImage = `url('./img/${pictures[active]}.jpeg')`;
   });
 });
